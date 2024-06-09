@@ -1,0 +1,115 @@
+lv1
+package com.example.mycalculator_been
+
+fun mycallv1() {
+    var num1 = readln()!!.toInt()
+    val sansu = readln()!!.trim()
+    var num2 = readln()!!.toInt()
+
+    class calculator {
+        fun plus(num1: Int, num2: Int): Int {
+            return num1 + num2
+        }
+
+        fun minus(num1: Int, num2: Int): Int {
+            return num1 - num2
+        }
+
+        fun multiply(num1: Int, num2: Int): Int {
+            return num1 * num2
+        }
+
+        fun divide(num1: Int, num2: Int): Double {
+            return num1.toDouble() / num2.toDouble()
+        }
+
+        fun mod(num1: Int, num2: Int): Int {
+            return num1 % num2
+        }
+        fun sansu(num1:Int, num2:Int, sansu:String): Any {
+            return when (sansu){
+                "1" -> plus(num1, num2).toDouble()
+                "2" -> minus(num1,num2).toDouble()
+                "3" -> multiply(num1,num2).toDouble()
+                "4" -> divide(num1,num2)
+                "5" -> mod(num1,num2).toDouble()
+                else -> println("1~5사이의 숫자를 입력해 주세요.")
+            }
+        }
+    }
+        var answer = calculator().sansu(num1,num2,sansu)
+    println("${answer}")
+}
+
+fun main() {
+    mycallv1()
+}
+
+-------------------------------------------------------
+
+lv2
+
+age com.example.mycalculator_been
+
+class calculator {
+    fun plus(num1: Int, num2: Int): Int {
+        return num1 + num2 }
+    fun minus(num1: Int, num2: Int): Int {
+        return num1 - num2 }
+    fun multiply(num1: Int, num2: Int): Int {
+        return num1 * num2 }
+    fun divide(num1: Int, num2: Int): Double {
+        if (num2 ==0) {
+            throw ArithmeticException("계산이 어려워요...")
+        }
+        return num1.toDouble() / num2.toDouble() }
+    fun mod(num1: Int, num2: Int): Int {
+        return num1 % num2 }
+
+    fun sansu(num1: Int, num2: Int, sansu: String): Double {
+        return when (sansu) {
+            "1" -> plus(num1, num2).toDouble()
+            "2" -> minus(num1, num2).toDouble()
+            "3" -> multiply(num1, num2).toDouble()
+            "4" -> divide(num1, num2)
+            "5" -> mod(num1, num2).toDouble()
+            else -> {
+                throw IllegalArgumentException("1~5 또는 -1을 입력해 주세요")
+            }
+        }
+    }
+}
+
+class calend(message:String) : Exception(message)
+
+fun mucallv2() {
+    val calculator = calculator()
+
+    while (true) {
+        var num1 = readln()!!.toInt()
+        val sansu = readln()!!.trim()
+        var num2 = readln()!!.toInt()
+
+        if (sansu == "-1"){
+            println("계산기 종료~")
+            break
+        }
+
+        try {
+            val answer = calculator.sansu(num1, num2, sansu)
+        } catch (e: calend) {
+            println(e.message)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        } catch (e: ArithmeticException) {
+            println(e.message)
+        }
+
+        var answer = calculator().sansu(num1, num2, sansu)
+        println("${answer}")
+    }
+}
+
+fun main() {
+    mucallv2()
+}
